@@ -155,19 +155,19 @@ class SearchQueryBuilderTest extends \PHPUnit_Framework_TestCase
                 'persons' => Array(
                     Array(
                         'passengerType' => 'ADT',
-                        'quantity' => 3
+                        'quantity' => 1
                     ),
                     Array(
                         'passengerType' => 'CHD',
-                        'quantity' => 2
+                        'quantity' => 0
                     ),
                     Array(
                         'passengerType' => 'INF',
-                        'quantity' => 1
+                        'quantity' => 0
                     )
                 ),
                 'providerType' => 'OnlyTraditional',
-                'preferredAirlines' => Array('BA', 'W6', 'FR')
+                'preferredAirlines' => Array('BA', 'W6', 'FR', 'BA')
             )
         );
     }

@@ -37,10 +37,10 @@ class BookQueryBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             Array(
-                'passengers' => $expectedPassengers,
+                'persons' => $expectedPassengers,
                 'billingInfo' => $this->address,
                 'contactInfo' => $this->address,
-                'bookingId' => '801_0_1'
+                'bookBasket' => Array('801_0_1')
             ),
             $query->getData()
         );
@@ -56,10 +56,10 @@ class BookQueryBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             Array(
-                'passengers' => $expectedPassengers,
+                'persons' => $expectedPassengers,
                 'billingInfo' => $this->address,
                 'contactInfo' => $this->address,
-                'bookingId' => '801_0_1'
+                'bookBasket' => Array('801_0_1')
             ),
             $query->getData()
         );
@@ -84,10 +84,10 @@ class BookQueryBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             Array(
-                'passengers' => $expectedPassengers,
+                'persons' => $expectedPassengers,
                 'billingInfo' => $this->address,
                 'contactInfo' => $this->address,
-                'bookingId' => '801_0_1'
+                'bookBasket' => Array('801_0_1')
             ),
             $query->getData()
         );

@@ -1,6 +1,21 @@
 services:
+  web:
+    image: php:5.6-cli
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: php -S 0.0.0.0:3000 -t public
+    ports:
+      - "3000:3000"
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(strpos(file_get_contents('http://127.0.0.1:3000/'), 'The PHP library is loaded and ready.') === false ? 1 : 0);"]
+      interval: 10s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
   test:
-    # PHPUnit 4.1.* requires PHP 5.3.3+; using 5.6 for compatibility
+    profiles: ["tests"]
     image: php:5.6-cli
     working_dir: /app
     volumes:
@@ -12,4 +27,3 @@ services:
       && curl -sS https://getcomposer.org/installer | php -- --quiet
       && php composer.phar install --quiet --no-interaction --prefer-dist
       && vendor/bin/phpunit --bootstrap /app/tests/bootstrap.php tests/"
-    restart: "no"

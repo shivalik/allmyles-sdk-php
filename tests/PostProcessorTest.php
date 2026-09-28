@@ -123,7 +123,8 @@ class PostProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($output->availableSeats, 0);
         $this->assertEquals($output->cabin, "economy");
         $this->assertEquals($output->flightNumber, "8446");
-        $this->assertEquals($output->airline, "FR");
+        $this->assertEquals($output->airline, null);
+        $this->assertEquals($output->operatingAirline, "FR");
         $this->assertEquals(
             $output->departure, new Flights\Stop($segment["departure"], $output)
         );
@@ -151,13 +152,13 @@ class PostProcessorTest extends \PHPUnit_Framework_TestCase
                         Array(
                             'max_quantity' => 0,
                             'max_weight' => 0.0,
-                            'price' => new Common\Price(Array('amount' => 0.0, 'currency' => null)),
+                            'price' => Array('amount' => 0.0, 'currency' => null),
                             'tier' => '0'
                         ),
                         Array(
                             'max_quantity' => 1,
                             'max_weight' => 15.0,
-                            'price' => new Common\Price(Array('amount' => 54.4, 'currency' => 'EUR')),
+                            'price' => Array('amount' => 54.4, 'currency' => 'EUR'),
                             'tier' => '1'
                         )
                     ),

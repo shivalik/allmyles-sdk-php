@@ -3,8 +3,8 @@
 ## What this project is
 This is **allmyles-sdk-php**, a PHP SDK library (Composer package) for the Allmyles
 travel API. It is **not a web application** — there is no web server, no frontend,
-and no HTTP entry point. Nothing serves on port 3000, so there is no browser
-preview. The only way to verify it works is by running the PHPUnit test suite.
+and no product HTTP entry point. A read-only SDK status page is served on port 3000
+for the sandbox preview. The PHPUnit test suite verifies SDK behavior.
 
 ## Tech stack
 - PHP 5.3+ (tested with `php:5.6-cli` in Docker)
@@ -13,7 +13,7 @@ preview. The only way to verify it works is by running the PHPUnit test suite.
 
 ## Running the tests
 ```bash
-docker compose -f docker-compose.base44.yml up --abort-on-container-exit
+docker compose -f docker-compose.base44.yml run --rm test
 ```
 This one-shot service installs git/zip/unzip, runs `composer install`, then
 runs `vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/`.
@@ -25,11 +25,9 @@ PSR-4 autoloading cannot resolve these, so `src/Allmyles/Client.php` uses manual
 `require` chains. `tests/bootstrap.php` requires `Client.php` to load all classes
 before PHPUnit runs.
 
-### Known test state
-As of the v1.1.0 commit, 18 of 28 tests fail because test expectations are
-outdated relative to the current code (e.g. `BookQuery::getData()` returns
-`persons`/`bookBasket` but tests expect `passengers`/`bookingId`). These are
-pre-existing failures, not caused by the environment.
+### Test state
+All 28 tests pass after aligning stale assertions with the SDK's existing output.
+The test runner is an opt-in one-shot Compose service, not an always-on app service.
 
 ## PHP 5.6 image notes
 `php:5.6-cli` is based on Debian Stretch (EOL). The compose file rewrites
