@@ -11,5 +11,5 @@ services:
       && apt-get install -y --allow-unauthenticated -qq git zip unzip > /dev/null 2>&1
       && curl -sS https://getcomposer.org/installer | php -- --quiet
       && php composer.phar install --quiet --no-interaction --prefer-dist
-      && vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/"
+      && vendor/bin/phpunit --bootstrap /app/tests/bootstrap.php tests/"
     restart: "no"
